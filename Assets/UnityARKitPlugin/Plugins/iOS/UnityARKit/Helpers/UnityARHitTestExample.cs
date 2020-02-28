@@ -95,20 +95,20 @@ namespace UnityEngine.XR.iOS
 				};
 
 				// apply color at cube
-				cube.GatComponent<Renderer>().material = material;
+				cube.GetComponent<Renderer>().material = material;
 
 				// throw cube
-				cube.transform.position = new Vector(0.2f, 0.2f, 0.2f);
+				cube.transform.position = new Vector3(0.2f, 0.2f, 0.2f);
 
 				// add Rigitbody at cube
 				cube.AddComponent<Rigidbody>();
-				cube.GetComponent<Rigidbody>().AddForce(cam.transform.TransformDirection(0, 1f, 2f), ForceMode.Impuse);
+				cube.GetComponent<Rigidbody>().AddForce(cam.transform.TransformDirection(0, 1f, 2f), ForceMode.Impulse);
 			}
 		}
 
 		private bool IsPointerOverUIObject()
 		{
-			PointEventData eventDataCurrentPosition = new PointEventData(EventSystem.current);
+			PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
 			eventDataCurrentPosition.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
 			List<RaycastResult> results = new List<RaycastResult>();
 			EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
