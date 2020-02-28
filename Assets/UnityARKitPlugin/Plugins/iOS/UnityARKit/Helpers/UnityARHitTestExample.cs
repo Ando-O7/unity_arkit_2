@@ -81,7 +81,31 @@ namespace UnityEngine.XR.iOS
 
 		}
 
-	
+		public void ThrowCube()
+		{
+			if (Input.touchCount > 0 && cam != null)
+			{
+				// create interactive cube with CreatePrimitive
+				GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+
+				// create random color
+				Material material = new Material(Shader.Find("Diffuse"))
+				{
+					color = new Color(Random.value, Random.value, Random.value)
+				};
+
+				// apply color at cube
+				cube.GatComponent<Renderer>().material = material;
+
+				// throw cube
+				cube.transform.position = new Vector(0.2f, 0.2f, 0.2f);
+
+				// add Rigitbody at cube
+				cube.AddComponent<Rigidbody>();
+				cube.GetComponent<Rigidbody>().AddForce(cam.transform.TransformDirection(0, 1f, 2f), ForceMode.Impuse);
+			}
+		}
+
 	}
 }
 
